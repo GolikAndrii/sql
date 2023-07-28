@@ -6,7 +6,8 @@ FROM     Products
 JOIN     OrderDetails ON Products.ProductID=OrderDetails.ProductID
 ORDER BY Price DESC
 LIMIT 1
-
+-- ###############################################################################
+	
 
 -- 2. Вывести два самых дорогих товара из категории Beverages из USA
 
@@ -16,14 +17,18 @@ JOIN Suppliers ON Suppliers.SupplierID=Products.SupplierID
 JOIN Categories ON Categories.CategoryID=Products.CategoryID
 WHERE Suppliers.Country='USA' AND Categories.CategoryName='Beverages'
 ORDER BY Price DESC
+-- ###############################################################################
 
 
+	
 -- 3. Удалить товары с ценой от 5 до 25 EUR
 
 DELETE FROM Products
 WHERE Price 
 BETWEEN 5 AND 25
+-- ###############################################################################
 
+	
   
 -- 4. Вывести список стран, которые поставляют морепродукты
 
@@ -32,23 +37,25 @@ FROM     Suppliers
 JOIN     Products ON Suppliers.SupplierID=Products.SupplierID
 JOIN     Categories ON Categories.CategoryID=Products.CategoryID
 WHERE    Categories.CategoryName='Seafood'
+-- ###############################################################################
 
-
+	
   
 -- 5. Очистить поле ContactName у всех клиентов не из China
-
+	
 UPDATE    Customers
 SET 
-	        CustomerName=''
+	  CustomerName=''
 WHERE NOT Country='China'  -- у нас нет совсем такой страны ))) Поэтому UPDATE происходит у всех клиентов ;-)
-  
+-- ###############################################################################
+
+
 
 -- 6. Вывести информацию о товарах с ценой от 10 до 150 EUR, которые были поставлены из Japan:
 --     * название_товара
 --     * цена_товара
 --     * цена_со_скидкой_15_процентов
 --     * название_поставщика
-
 
 SELECT 	ProductName, 
 		    Price, 
@@ -58,7 +65,8 @@ FROM    Products
 JOIN    Suppliers ON Suppliers.SupplierID=Products.SupplierID
 WHERE 	Suppliers.Country='Japan' 
   AND   Price BETWEEN 10 AND 150 
-
+-- ###############################################################################
+	
   
 
 -- 7. Вывести заказы клиентов из USA, Germany, UK:
@@ -68,10 +76,9 @@ WHERE 	Suppliers.Country='Japan'
 --   * имя_менеджера
 --   * фамилия_менеджера
 
-
 SELECT   OrderID, ContactName, Country, FirstName, LastName
 FROM     Orders
 JOIN     Customers ON Customers.CustomerID=Orders.CustomerID
 JOIN     Employees ON Employees.EmployeeID=Orders.EmployeeID
 WHERE    Customers.Country IN ('USA', 'Germany', 'UK')
-
+-- ###############################################################################
