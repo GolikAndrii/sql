@@ -17,6 +17,7 @@ JOIN Suppliers ON Suppliers.SupplierID=Products.SupplierID
 JOIN Categories ON Categories.CategoryID=Products.CategoryID
 WHERE Suppliers.Country='USA' AND Categories.CategoryName='Beverages'
 ORDER BY Price DESC
+LIMIT 2
 -- ###############################################################################
 
 
