@@ -59,7 +59,7 @@ WHERE NOT Country='China'  -- у нас нет совсем такой стра�
 --     * название_поставщика
 
 SELECT 	ProductName, 
-		    Price, 
+	Price, 
         Price * 0.85 AS Price_low, 
         SupplierName
 FROM    Products
