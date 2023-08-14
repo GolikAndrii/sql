@@ -54,8 +54,30 @@ WHERE
 
 
 --5 Вывести имена и фамилии (и ко-во заказов) менеджеров, у которых ко-во заказов менее 15
+SELECT 
+	Employees.LastName,
+	Employees.FirstName,
+COUNT(OrderID) AS how_mach_orders
 
+FROM Employees
+LEFT JOIN Orders ON Employees.EmployeeID=Orders.EmployeeID
+
+GROUP BY 	Orders.EmployeeID
+HAVING 		how_mach_orders <15
 
 -- ###############################################################################
 
 --6 Вывести товар, который находится на втором месте по ко-ву заказов
+
+SELECT
+	Products.ProductName,
+    	Products.ProductID,
+        COUNT(Products.ProductID) AS count_product
+FROM Products
+
+JOIN OrderDetails USING (ProductID)
+
+GROUP BY OrderDetails.ProductID 
+ORDER BY count_product DESC
+LIMIT 1 OFFSET 1
+-- ###############################################################################
