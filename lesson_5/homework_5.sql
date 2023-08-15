@@ -29,13 +29,20 @@ db.products.updateMany(
 
 
 -- 4. Заблокировать юзеров не из USA
+    
 db.users.updateMany(
     { country: {$ne: "USA"} }, // filter
     { $set: { is_blocked: true } } // action
 )
+
 -- END OF TASK-4 ##################################################################
 
 -- 5. Вывести имена незаблокированных юзеров
 
+db.users.find(
+    { is_blocked: {$ne: true }}, // filter
+    {fullname: 1, _id: 0}
+)
 
+-- END OF TASK-5 ##################################################################
 
